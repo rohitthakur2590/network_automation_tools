@@ -13,8 +13,8 @@ A curated set of **Ansible Network Automation** resources—execution environmen
 ---
 
 ## Guides
-- [Environment Setup (EE/Validated)](./guides/ansible_env_setup_guide.md)
+- [Setting up complete ansible dev env](./guides/ansible_env_setup_guide.md)
 - [Manual Environment Setup](./guides/manual_ansible_env_setup.md)
-- [Ansible Builder Guide](./guides/ansible_builder_guide.md)
+- [Ansible Builder Guide(EE)](./guides/ansible_builder_guide.md)
 - [Ansible Navigator Setup](./guides/ansible_navigator_setup.md)
 - [Network Automation with AAP (GUI)](./guides/network_automation_with_aap_.md)
