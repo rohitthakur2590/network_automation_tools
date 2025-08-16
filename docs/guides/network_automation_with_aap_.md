@@ -1,6 +1,6 @@
-# AAP — Validated Content Demo (via the **GUI**)
+# AAP — Content Demo (via the **GUI**)
 
-This walkthrough shows how to demo **Red Hat Ansible Validated Content** using only the **AAP web UI** (Automation Controller + optional Automation Hub).  
+This walkthrough shows how to demo **Red Hat Ansible Content** using only the **AAP web UI** (Automation Controller + optional Automation Hub).  
 You will:
 1) add credentials (registry + galaxy/automation hub),  
 2) register a  **Execution Environment** (EE),  
