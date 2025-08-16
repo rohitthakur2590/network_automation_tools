@@ -1,0 +1,7 @@
+---
+- name: Gather IOS facts
+  hosts: ios
+  gather_facts: no
+  tasks:
+    - cisco.ios.ios_facts:
+    - debug: msg={{ ansible_net_version | default('unknown') }}

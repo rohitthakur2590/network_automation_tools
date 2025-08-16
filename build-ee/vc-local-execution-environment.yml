@@ -1,0 +1,32 @@
+version: 3
+
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8:latest
+
+options:
+  package_manager_path: /usr/bin/microdnf
+
+dependencies:
+  galaxy: vc-local-requirements.yml      # <-- collections (YAML)
+  python: requirements.txt               # <-- pip reqs (one-per-line)
+  # system: bindep.txt                   # optional (see §3)
+
+additional_build_files:
+  - src: ansible.cfg
+    dest: configs/
+  - src: /home/rothakur/dev-workspace/ansible_collections/network.healthchecks
+    dest: collections/network.healthchecks
+  - src: /home/rothakur/dev-workspace/ansible_collections/network.inventory_reports
+    dest: collections/network.inventory_reports
+
+additional_build_steps:
+  prepend_base:
+    - RUN pip3 install --upgrade pip setuptools
+
+  prepend_galaxy:
+    - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+    - ENV ANSIBLE_CONFIG=/etc/ansible/ansible.cfg
+
+  append_final:
+    - RUN ansible-galaxy collection list

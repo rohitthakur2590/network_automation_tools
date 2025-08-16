@@ -1,0 +1,203 @@
+
+# 🚀 Setting Up Ansible Collections Development Environment with Python 3.12 + Virtualenvwrapper
+
+This guide explains how to prepare your local development environment for working with Ansible Collections. It covers **manual step-by-step setup** and an **automated alternative** using provided scripts.
+
+---
+
+## 📌 Prerequisites
+
+Before starting, ensure:
+- You have **sudo** privileges.
+- Git and Python build tools are installed.
+- You have access to your Ansible fork (via SSH or HTTPS).
+- Your system uses **dnf** package manager (Fedora, RHEL, CentOS Stream). For other distros, install equivalent packages.
+
+---
+
+## **Manual Setup Steps**
+
+### 1️⃣ Install `virtualenv`
+
+`virtualenv` allows you to create isolated Python environments, so dependencies from one project don't interfere with another.
+
+```bash
+sudo pip install virtualenv
+```
+
+---
+
+### 2️⃣ Install Python 3.12 and development headers
+
+We use Python 3.12 to match Ansible’s current development environment requirements.
+
+```bash
+sudo dnf install -y python3.12 python3.12-devel
+python3.12 -V
+```
+
+---
+
+### 3️⃣ Install `virtualenvwrapper`
+
+`virtualenvwrapper` adds commands like `mkvirtualenv`, `workon`, and `rmvirtualenv` to manage multiple virtual environments easily.
+
+```bash
+sudo pip install virtualenvwrapper
+```
+
+---
+
+### 4️⃣ Configure `~/.bash_profile`
+
+Add the following to **`~/.bash_profile`** so `virtualenvwrapper` loads automatically when you open a terminal.
+
+```bash
+# ~/.bash_profile - User login shell configuration
+
+# Load ~/.bashrc if it exists
+[[ -f ~/.bashrc ]] && source ~/.bashrc
+
+# Virtualenvwrapper settings
+export WORKON_HOME="$HOME/venvs"
+
+# Prefer Python 3.12 if installed
+if command -v python3.12 >/dev/null 2>&1; then
+    export VIRTUALENVWRAPPER_PYTHON="$(command -v python3.12)"
+else
+    export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
+fi
+
+# Handle nounset-safe sourcing for virtualenvwrapper
+export ZSH_VERSION="${ZSH_VERSION:-}"
+set +u
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+else
+    echo "[WARN] virtualenvwrapper.sh not found."
+fi
+set -u
+```
+
+---
+
+### 5️⃣ Reload your shell configuration
+
+```bash
+source ~/.bash_profile
+```
+
+---
+
+### 6️⃣ Create a virtual environment
+
+We’ll create a dedicated Python 3.12 virtual environment named `dev_py312`.
+
+```bash
+mkvirtualenv -p python3.12 dev_py312
+```
+
+---
+
+### 7️⃣ Prepare the Ansible workspace
+
+```bash
+cd ~
+mkdir -p dev-workspace/ansible_collections/ansible
+cd dev-workspace/ansible_collections/ansible
+git clone git@github.com:rohitthakur2590/ansible.git
+```
+
+---
+
+### 8️⃣ Configure `postactivate` hook
+
+This script will run **every time** you activate `dev_py312`, setting up your Ansible environment automatically.
+
+Edit:
+```bash
+vi ~/venvs/dev_py312/bin/postactivate
+```
+
+Add:
+```bash
+#!/bin/bash
+cur_dir="$(pwd)"
+cd ~/dev-workspace/ansible_collections/ansible/ansible
+pip install -r requirements.txt
+source hacking/env-setup
+cd "$cur_dir"
+clear
+ansible --version
+```
+
+Make it executable:
+```bash
+chmod +x ~/venvs/dev_py312/bin/postactivate
+```
+
+---
+
+### 9️⃣ Add upstream repository and sync branches
+
+```bash
+cd ~/dev-workspace/ansible_collections/ansible/ansible
+git remote add upstream https://github.com/ansible/ansible
+git fetch upstream
+git rebase upstream/devel
+git checkout -b stable-2.18 upstream/stable-2.18
+git push -f origin stable-2.18
+```
+
+---
+
+## 💡 Alternate: Automated Setup
+
+Instead of running the above steps manually, you can run these scripts:
+
+### 1) **`pre_ansible_collections_setup.sh`**
+- Installs Python 3.12, `virtualenv`, and `virtualenvwrapper`.
+- Updates `~/.bash_profile` to load virtualenvwrapper (nounset-safe).
+- Creates `dev_py312` virtual environment.
+- Sets up `postactivate` hook for Ansible.
+- Clones your forked Ansible repo and adds `upstream`.
+- Checks out and syncs `stable-2.18`.
+
+Run:
+```bash
+chmod +x pre_ansible_collections_setup.sh
+./pre_ansible_collections_setup.sh
+```
+
+---
+
+### 2) **`bootstrap_collections.sh`**
+- Can be used after the environment is ready to **fetch, build, and prepare multiple Ansible collections**.
+- Automates cloning, dependency installation, and branch syncing for your collections.
+
+Run:
+```bash
+chmod +x bootstrap_collections.sh
+./bootstrap_collections.sh
+```
+
+---
+
+## ✅ Summary
+
+| Step | Manual Command | Automated Equivalent |
+|------|---------------|----------------------|
+| Install Python & Virtualenv | `sudo dnf install python3.12 python3.12-devel` + `sudo pip install virtualenv virtualenvwrapper` | Done by `pre_ansible_collections_setup.sh` |
+| Configure `.bash_profile` | Edit manually | Auto-written by script |
+| Create virtual environment | `mkvirtualenv -p python3.12 dev_py312` | Done by script |
+| Clone Ansible repo | `git clone ...` | Done by script |
+| Configure `postactivate` | Edit manually | Auto-generated by script |
+| Sync git branches | `git fetch` + `git rebase` | Done by script |
+
+---
+
+📌 **Recommendation:**  
+If you’re setting this up for the **first time**, use `pre_ansible_collections_setup.sh` to avoid manual errors.  
+If you already have a working environment and just want to pull multiple collections quickly, use `bootstrap_collections.sh`.

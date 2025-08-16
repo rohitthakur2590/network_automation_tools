@@ -1,0 +1,7 @@
+packaging>=23.2
+setuptools>=68
+wheel
+junos-eznc
+jsnapy
+jxmlease
+ncclient==0.6.15
