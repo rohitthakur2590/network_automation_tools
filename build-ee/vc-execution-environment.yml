@@ -1,0 +1,35 @@
+# vc-execution-environment.yml
+version: 3
+
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8:latest
+
+options:
+  # <-- this is the key bit
+  package_manager_path: /usr/bin/microdnf
+
+dependencies:
+  galaxy: vc-requirements.yml       # your collections (validated/published + git refs)
+  python: requirements.txt          # your extra Python deps
+  # system: bindep.txt              # uncomment if you have system packages
+
+# Put ansible.cfg into the build context and copy it in before galaxy installs,
+# so your validated/published servers + token are honored.
+additional_build_files:
+  - src: ansible.cfg
+    dest: configs/
+
+additional_build_steps:
+  # Upgrade packaging tools in the base stage (optional but common)
+  prepend_base:
+    - RUN pip3 install --upgrade pip setuptools
+
+  # Make ansible.cfg available for the **galaxy** install phase
+  prepend_galaxy:
+    - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+    - ENV ANSIBLE_CONFIG=/etc/ansible/ansible.cfg
+
+  # (Optional) sanity; see what got installed
+  append_final:
+    - RUN ansible-galaxy collection list

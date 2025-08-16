@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks: [ {id: end-of-file-fixer}, {id: trailing-whitespace}, {id: mixed-line-ending} ]
+
+  - repo: https://github.com/pre-commit/mirrors-yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [ "-c", ".yamllint.yaml", "." ]
+
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v6.22.1
+    hooks:
+      - id: ansible-lint
+        additional_dependencies: [ "ansible" ]
+
+  - repo: https://github.com/pre-commit/mirrors-markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint-cli
+        args: [ "--config", ".markdownlint.json", "**/*.md", "!site/**" ]
