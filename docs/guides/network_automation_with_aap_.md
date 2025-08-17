@@ -2,7 +2,7 @@
 
 This walkthrough shows how to demo **Red Hat Ansible Content** using only the **AAP web UI** (Automation Controller + optional Automation Hub).  
 You will:
-1) add credentials (registry + galaxy/automation hub),  
+1) add credentials (registry, network, scm),  
 2) register a  **Execution Environment** (EE),  
 3) create a **Project** that includes job templates,  
 4) make an **Inventory** + **Credentials**,  
@@ -16,8 +16,6 @@ You will:
 - Your credentials for `registry.redhat.io/any`.
 - An **Github Personal Access token** .
 - At least one target network host you can reach via SSH.
-
-> **Safe demo:** use a r playbook (or run with **Check Mode**).
 
 ---
 
@@ -151,9 +149,9 @@ Once you save the inventory , you can create group and hosts.
   - **Save**
 
 
-## 6) Create a **Job Template** (GUI)
+## 6) Create a **Job Template (Network Backup)** (GUI)
 - **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
-  - **Name:** `Create Network Backup`
+  - **Name:** `Create Network-Config Backup`
   - **Description:** `Save running config to backup files and push onto SCM`
   - **Job Type:** `Run`
   - **Inventory:** `validated_nat_inventory`
@@ -161,6 +159,20 @@ Once you save the inventory , you can create group and hosts.
   - **Execution Environment:** `validated_nat_ee`
   - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
   - **Playbook:** `playbooks/backup/backup_scm.yaml`
+  - **Save**
+
+Once you save the job template, you can click on the launch button or press the rocket icon to run this.
+
+## 6) Create a **Job Template (Network Restore)** (GUI)
+- **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
+  - **Name:** `Restore Network-Config`
+  - **Description:** `Read backup file from SCM and restore config`
+  - **Job Type:** `Run`
+  - **Inventory:** `validated_nat_inventory`
+  - **Project:** `Validated Network Automation Tools`
+  - **Execution Environment:** `validated_nat_ee`
+  - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
+  - **Playbook:** `playbooks/backup/restore_scm.yaml`
   - **Save**
 
 Once you save the job template, you can click on the launch button or press the rocket icon to run this.
