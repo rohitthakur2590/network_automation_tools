@@ -244,7 +244,7 @@ ansible-builder build --tag networking-ee -v 3
 podman tag localhost/networking-ee quay.io/rothakur18/networking-ee
 podman push quay.io/rothakur18/networking-ee
 ```
-
+If you want, you can specify a customized environment file other than the default execution-environment.yml
 **Build with customization**
 ```bash
 $ ansible-builder build   -f vc-local-execution-environment.yml   -t vc_ee_local:latest   -v 3 --no-cache^C
@@ -253,8 +253,6 @@ $ podman images | grep vc_ee_local
 localhost/vc_ee_local                                                                   latest      9209a2c6a861  18 minutes ago     509 MB
 $ podman tag vc_ee_local:latest quay.io/rothakur18/vc_ee_local:latest 
 $ podman push --format v2s2 quay.io/rothakur18/vc_ee_local:latest 
-
-
 ```
 
 For more details, refer to the official [Execution Environment documentation](https://docs.google.com/document/d/1PHaF-qfxJ8DqpkCaVz8HCeYx2tO3b-6zW8Nr1hS9viw/edit?usp=sharing)
