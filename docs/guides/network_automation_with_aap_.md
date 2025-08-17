@@ -153,17 +153,17 @@ Once you save the inventory , you can create group and hosts.
 
 ## 6) Create a **Job Template** (GUI)
 - **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
-  - **Name:** `Generate Network Reports`
-  - **Description:** `Generate network reports`
+  - **Name:** `Create Network Backup`
+  - **Description:** `Save running config to backup files and push onto SCM`
   - **Job Type:** `Run`
   - **Inventory:** `validated_nat_inventory`
   - **Project:** `Validated Network Automation Tools`
   - **Execution Environment:** `validated_nat_ee`
   - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
-  - **Playbook:** `playbooks/reports/generate_reports.yaml`
+  - **Playbook:** `playbooks/backup/backup_scm.yaml`
   - **Save**
 
-Once you save the job template, you can click on launch button or press rocket icon to run this.
+Once you save the job template, you can click on the launch button or press the rocket icon to run this.
 
 Blogs:
  - [Create Executoin Environment](./ansible_builder_guide.md)
