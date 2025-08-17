@@ -78,6 +78,16 @@ You will:
   - **Type Details→Privilege Escalation Method :** `enable`
   - **Type Details→Privilege Escalation Password :** `cisco`
   - **Save**
+ 
+  ### 1.4 Credential (SCM creds)
+- **Controller UI** → **Resources** → **Credentials** → **Add**
+  - **Name:** `validated_nat_scm_cred`
+  - **Description:** ``
+  - **Organization:** ``
+  - **Credential Type:** `Source Control`
+  - **Type Details→username :** `<your-github-username>`
+  - **Type Details→password :** `<your-github_pat>`
+  - **Save**
 ---
 
 ## 2) Register a **EE** (GUI)
