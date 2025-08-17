@@ -164,7 +164,7 @@ Once you save the inventory , you can create group and hosts.
 
 Once you save the job template, you can click on the launch button or press the rocket icon to run this.
 
-## 6) Create a **Job Template (Network Restore)** (GUI)
+## 7) Create a **Job Template (Network Restore)** (GUI)
 - **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
   - **Name:** `Restore Network-Config`
   - **Description:** `Read backup file from SCM and restore config`
@@ -178,6 +178,19 @@ Once you save the job template, you can click on the launch button or press the 
 
 **Note:** Ensure file transfer is enabled on the target appliance; otherwise, it will fail.
 Once you save the job template, you can click on the launch button or press the rocket icon to run this.
+
+## 8) Create a **Job Template (Generate Network Report)** (GUI)
+- **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
+  - **Name:** `Generate Network-Reports`
+  - **Description:** `Gather network data report and push onto SCM`
+  - **Job Type:** `Run`
+  - **Inventory:** `validated_nat_inventory`
+  - **Project:** `Validated Network Automation Tools`
+  - **Execution Environment:** `validated_nat_ee`
+  - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
+  - **Playbook:** `playbooks/backup/generate_reports.yml`
+  - **Save**
+
 
 Blogs:
  - [Create Executoin Environment](./ansible_builder_guide.md)
