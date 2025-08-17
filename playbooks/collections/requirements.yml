@@ -2,3 +2,14 @@ collections:
   - name: ansible.netcommon
   - name: ansible.utils
   - name: cisco.ios
+  - name: cisco.iosxr
+  - name: arista.eos
+  - name: cisco.nxos
+  - name: network.inventory_reports
+  - name: network.healthchecks
+  - name: network.backup
+  - name: network.base
+  - name: network.interfaces
+  - name: network.bgp
+  - name: network.ospf
+  - name: ansible.scm
