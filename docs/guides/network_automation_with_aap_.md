@@ -176,6 +176,7 @@ Once you save the job template, you can click on the launch button or press the 
   - **Playbook:** `playbooks/backup/restore_scm.yaml`
   - **Save**
 
+**Note:** Ensure file transfer is enabled on the target appliance; otherwise, it will fail.
 Once you save the job template, you can click on the launch button or press the rocket icon to run this.
 
 Blogs:
