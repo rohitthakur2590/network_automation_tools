@@ -1,8 +1,0 @@
-site_name: Ansible Network Labs
-theme:
-  name: material
-nav:
-  - Home: index.md
-  - Guides:
-      - Getting Started: guides/getting-started.md
-      - Validated Content Demo: guides/validated-content-demo.md
