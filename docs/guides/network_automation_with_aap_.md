@@ -79,7 +79,7 @@ You will:
   - **Type Details→Privilege Escalation Password :** `cisco`
   - **Save**
  
-  ### 1.4 Credential (SCM creds)
+  ### 1.5 Credential (SCM creds)
 - **Controller UI** → **Resources** → **Credentials** → **Add**
   - **Name:** `validated_nat_scm_cred`
   - **Description:** ``
@@ -113,7 +113,7 @@ In sidebar Go to Resources->Projects and click on add
   - **Organization:** `default`
   - **Source Control Type** `git`
   - **Source Control URL:** `<your playbooks git url>`
-  - **Source Control Credential:** `git`
+  - **Source Control Credential:** `validated_nat_scm_cred`
   - **Save**
 
 You need a Git repo with:
