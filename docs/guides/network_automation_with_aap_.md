@@ -141,10 +141,11 @@ Once you save the inventory , you can create group and hosts.
   - **Description:** `grouping network hosts under group "network"`
   - **Variables:**
   ```yaml
-  ansible_ssh_port: 2119
+  ansible_ssh_port: 2120
   ansible_host: 54.190.208.146
   ansible_become: true
-  ansible_network_os: cisco.nxos.nxos
+  ansible_network_os: cisco.ios.ios
+  ansible_network_cli_ssh_type: paramiko
   ```
   - **Save**
 
