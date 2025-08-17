@@ -83,7 +83,7 @@ You will:
 ## 2) Register a **EE** (GUI)
 
 - **Controller UI** → **Administration** → **Execution Environments** → **Add**
-  - **Name:** `VC Supported EE`
+  - **Name:** `validated_nat_ee`
   - **Image:** `quay.io/rothakur18/network-ee-demo-rr`
   - **Pull:** `Always`
   - **Description:** `EE for Out-of-box network automation solutions`
