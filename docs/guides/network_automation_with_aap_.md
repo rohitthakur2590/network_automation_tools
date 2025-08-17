@@ -83,12 +83,12 @@ You will:
 ## 2) Register a **EE** (GUI)
 
 - **Controller UI** → **Administration** → **Execution Environments** → **Add**
-  - **Name:** `VC Supported EE (RHEL9)`
-  - **Image:** `registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel9:latest`
+  - **Name:** `VC Supported EE`
+  - **Image:** `quay.io/rothakur18/network-ee-demo-rr`
   - **Pull:** `Always`
   - **Description:** `EE for Out-of-box network automation solutions`
   - **Organization:** `default`
-  - **Registry Credential:** `Red Hat Registry (registry.redhat.io)`
+  - **Registry Credential:** `Registry (quay.io)`
   - **Save**
 
 ---
