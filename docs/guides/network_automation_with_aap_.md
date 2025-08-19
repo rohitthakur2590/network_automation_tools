@@ -206,7 +206,7 @@ Once you save the job template, you can click on the launch button or press the 
 ## 10) Create a **Job Template (Persist Network Facts)** (GUI)
 - **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
   - **Name:** `Generate Network-Reports`
-  - **Description:** `Gather network data report`
+  - **Description:** `Persist network data report`
   - **Job Type:** `Run`
   - **Inventory:** `validated_nat_inventory`
   - **Project:** `Validated Network Automation Tools`
