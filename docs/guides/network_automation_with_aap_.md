@@ -188,7 +188,7 @@ Once you save the job template, you can click on the launch button or press the 
   - **Project:** `Validated Network Automation Tools`
   - **Execution Environment:** `validated_nat_ee`
   - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
-  - **Playbook:** `playbooks/backup/generate_reports.yml`
+  - **Playbook:** `playbooks/reports/generate_reports.yml`
   - **Save**
 
 ## 9) Create a **Job Template (Gather Network Facts)** (GUI)
