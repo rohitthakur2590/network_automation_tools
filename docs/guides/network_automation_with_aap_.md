@@ -191,6 +191,30 @@ Once you save the job template, you can click on the launch button or press the 
   - **Playbook:** `playbooks/backup/generate_reports.yml`
   - **Save**
 
+## 9) Create a **Job Template (Gather Network Facts)** (GUI)
+- **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
+  - **Name:** `Generate Network-Reports`
+  - **Description:** `Gather network data report`
+  - **Job Type:** `Run`
+  - **Inventory:** `validated_nat_inventory`
+  - **Project:** `Validated Network Automation Tools`
+  - **Execution Environment:** `validated_nat_ee`
+  - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
+  - **Playbook:** `playbooks/reports/gather.yml`
+  - **Save**
+
+## 10) Create a **Job Template (Persist Network Facts)** (GUI)
+- **Controller UI** → **Resources** → **Templates** → **Add** → **Add Job Template**
+  - **Name:** `Generate Network-Reports`
+  - **Description:** `Gather network data report`
+  - **Job Type:** `Run`
+  - **Inventory:** `validated_nat_inventory`
+  - **Project:** `Validated Network Automation Tools`
+  - **Execution Environment:** `validated_nat_ee`
+  - **Credentials:** `validated_nat_lab_cred`, `validated_nat_gh_token_cred`
+  - **Playbook:** `playbooks/reports/persist.yml`
+  - **Save**
+
 
 Blogs:
  - [Create Executoin Environment](./ansible_builder_guide.md)
